@@ -1,1 +1,1 @@
-# liftedmaastar
+# Lifted Multi-agent A*
