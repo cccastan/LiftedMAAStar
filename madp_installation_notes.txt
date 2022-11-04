@@ -1,0 +1,45 @@
+===========================
+Installing the MADP Toolbox
+
+Tested on Ubuntu 20.04 LTS
+===========================
+
+Get the MADP Toolbox from https://github.com/MADPToolbox/MADP
+
+If not already installed:
+  - $ sudo apt install g++
+  - $ sudo apt install make
+  
+Install libtool:
+  - $ sudo apt install libtool
+  
+Install optional packages required to run 'make check' without errors:
+  - $ sudo apt install libxml2-dev
+  - $ sudo apt install liblpsolve55-dev
+  - If not already installed:
+    $ sudo apt install libsuitesparse-dev
+    (replaces libufsparse-dev [deprecated], which is required according to MADP documentation)
+
+Compile in MADP-master directory:
+  - $ sh autogen.sh
+  - $ ./configure
+  - $ make  (probably followed by pages of warnings regarding auto_ptr; can be ignored)
+
+Test in madp-master directory:
+  - $ make check  (should run without errors, otherwise see src/tests/test-suite.log)
+
+Installation (moves all files to the correct locations):
+  - $ sudo make install
+  (see MADP docs for custom install directory, default <PATHTOMADP> = /usr/local)
+
+Check Boost installation:
+  - Boost library is supposed to be installed with MADP, which may fail
+  - Check if /usr/include/boost exists, otherwise:
+  - $ sudo apt install libboost-dev
+
+Usage as library:
+  - Compiling:
+    - $ g++ -o <NAME> <FILE>.cpp -I <PATHTOMADP>/include/madp -L <PATHTOMADP>/lib -lMADP
+    - default <PATHTOMADP> = /usr/local
+    - Note: '/madp' after '/include' is missing in the MADP-docs
+  - Execute compiled program: $ ./<NAME>
