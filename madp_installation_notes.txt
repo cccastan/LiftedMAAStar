@@ -37,9 +37,14 @@ Check Boost installation:
   - Check if /usr/include/boost exists, otherwise:
   - $ sudo apt install libboost-dev
 
-Usage as library:
+Usage (as library):
   - Compiling:
     - $ g++ -o <NAME> <FILE>.cpp -I <PATHTOMADP>/include/madp -L <PATHTOMADP>/lib -lMADP
     - default <PATHTOMADP> = /usr/local
     - Note: '/madp' after '/include' is missing in the MADP-docs
-  - Execute compiled program: $ ./<NAME>
+  - Before first execution: introduce the shared library libMADP-0.4.1.so to the OS
+    - Easiest method: add <PATHTOMADP> to LD_LIBRARY_PATH
+      - $ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<PATHTOMADP>/lib
+      - $ export LD_LIBRARY_PATH
+      - $ sudo ldconfig
+  - Execute compiled program: $ ./<NAME> <PROBLEM>.dpomdp -o<U_MIN> [OPTIONS]
